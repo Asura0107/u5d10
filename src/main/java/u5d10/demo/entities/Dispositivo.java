@@ -1,14 +1,13 @@
 package u5d10.demo.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import u5d10.demo.enums.DisponibileDisp;
+
+import java.util.Random;
 
 @Entity
 @Getter
@@ -20,10 +19,12 @@ public class Dispositivo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String tipo;
+    @Enumerated(EnumType.STRING)
     private DisponibileDisp disponibileDisp;
 
     public Dispositivo(String tipo, DisponibileDisp disponibileDisp) {
         this.tipo = tipo;
         this.disponibileDisp = disponibileDisp;
     }
+
 }
