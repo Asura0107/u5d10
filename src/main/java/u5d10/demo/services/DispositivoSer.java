@@ -29,7 +29,7 @@ public class DispositivoSer {
     public Dispositivo findById(long id) {
         return this.dispositivoDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
     }
-    public Page<Dispositivo> getDipendenti(int pageNumber, int size, String orderBy) {
+    public Page<Dispositivo> getDispositivi(int pageNumber, int size, String orderBy) {
         Pageable page = PageRequest.of(pageNumber, size, Sort.by(orderBy));
         return dispositivoDAO.findAll(page);
     }
@@ -40,8 +40,9 @@ public class DispositivoSer {
     }
 
     public Dispositivo save(DispositivoDTO newdisp) {
-        Dispositivo dispositivo= new Dispositivo(newdisp.tipo(),getRandomEnum(DisponibileDisp.class));
-        return dispositivo;
+        DisponibileDisp disponibilita = DisponibileDisp.valueOf(newdisp.disponibile());
+        Dispositivo dispositivo= new Dispositivo(newdisp.tipo(), disponibilita);
+        return dispositivoDAO.save(dispositivo);
     }
     public Dispositivo findAndUpdate (long id, Dispositivo update){
         Dispositivo dispositivo=this.findById(id);
