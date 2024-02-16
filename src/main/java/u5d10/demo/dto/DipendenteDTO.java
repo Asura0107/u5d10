@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public record DipendenteDTO(
+        @NotEmpty(message = "l'avatar è obbligatorio")
+        String avatar,
         @NotEmpty(message = "lo username è obbligatorio")
         @Size(min=3,max=20, message ="lo username deve essere compreso tra 3 e 20 caratteri" )
         String username,

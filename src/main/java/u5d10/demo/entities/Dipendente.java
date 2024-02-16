@@ -15,6 +15,7 @@ public class Dipendente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    public String avatar;
     private String username;
     private String name;
     private String surname;
@@ -23,7 +24,8 @@ public class Dipendente {
     @JoinColumn(name = "dispositivo_id")
     private Dispositivo dispositivo;
 
-    public Dipendente(String username, String name, String surname, String email, Dispositivo dispositivo) {
+    public Dipendente(String avatar,String username, String name, String surname, String email, Dispositivo dispositivo) {
+        this.avatar=avatar;
         this.username = username;
         this.name = name;
         this.surname = surname;
