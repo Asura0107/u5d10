@@ -13,6 +13,7 @@ import u5d10.demo.dao.DipendenteDAO;
 import u5d10.demo.dto.DipendenteDTO;
 import u5d10.demo.entities.Dipendente;
 import u5d10.demo.entities.Dispositivo;
+import u5d10.demo.enums.DisponibileDisp;
 import u5d10.demo.exception.BadRequestException;
 import u5d10.demo.exception.NotFoundException;
 
@@ -41,6 +42,9 @@ public class DipendenteSer {
             throw new BadRequestException("l'email "+ u.getEmail()+" è già esistente");
         });
         Dispositivo dispositivo=dispositivoSer.findById(newuser.dispositivo());
+        if (dispositivo.getDisponibileDisp()==DisponibileDisp.DISMESSO||dispositivo.getDisponibileDisp()==DisponibileDisp.IN_MANUNTENZIONE){
+            dispositivo=null;
+        }
         return dipendenteDAO.save(
                 new Dipendente(newuser.avatar(),newuser.username(),newuser.name(),newuser.surname(),newuser.email(), dispositivo)
         );
