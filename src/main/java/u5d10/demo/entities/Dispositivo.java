@@ -21,4 +21,9 @@ public class Dispositivo {
     private long id;
     private String tipo;
     private DisponibileDisp disponibileDisp;
+
+    public Dispositivo(String tipo, DisponibileDisp disponibileDisp) {
+        this.tipo = tipo;
+        this.disponibileDisp = disponibileDisp;
+    }
 }

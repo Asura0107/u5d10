@@ -1,9 +1,6 @@
 package u5d10.demo.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,5 +19,15 @@ public class Dipendente {
     private String name;
     private String surname;
     private String email;
+    @OneToOne
+    @JoinColumn(name = "dispositivo_id")
+    private Dispositivo dispositivo;
 
+    public Dipendente(String username, String name, String surname, String email, Dispositivo dispositivo) {
+        this.username = username;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.dispositivo = dispositivo;
+    }
 }
