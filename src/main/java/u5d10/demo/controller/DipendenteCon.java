@@ -55,8 +55,14 @@ public class DipendenteCon {
         this.dipendenteSer.findAndDelete(id);
     }
 
-    @PostMapping("/{id}/upload")
+    @PostMapping("/{id}/avatar")
     public String uploadCover(@PathVariable long id, @RequestParam("avatar") MultipartFile image) throws IOException {
         return this.dipendenteSer.findAndPostAvatar(id,image);
     }
+
+    @PostMapping("/{id}/newdisp")
+    public void uploadDispositivo(@PathVariable long id, @RequestParam("disp") long dispid) throws IOException {
+        this.dipendenteSer.findAndPostDisp(id,dispid);
+    }
+
 }

@@ -33,14 +33,14 @@ public class DipendenteSer {
     }
 
     public Dipendente findById(long id) {
-        return this.dipendenteDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
+        return dipendenteDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
     }
 
     public Dipendente save(DipendenteDTO newuser) {
         dipendenteDAO.findByEmail(newuser.email()).ifPresent(u->{
             throw new BadRequestException("l'email "+ u.getEmail()+" è già esistente");
         });
-        Dispositivo dispositivo=dispositivoSer.findById(newuser.dispositivoId());
+        Dispositivo dispositivo=dispositivoSer.findById(newuser.dispositivo());
         return dipendenteDAO.save(
                 new Dipendente(newuser.avatar(),newuser.username(),newuser.name(),newuser.surname(),newuser.email(), dispositivo)
         );
@@ -67,6 +67,13 @@ public class DipendenteSer {
         dipendente.setAvatar(url);
         dipendenteDAO.save(dipendente);
         return url;
+    }
+
+    public void findAndPostDisp(long id, long dispid){
+        Dipendente dipendente=this.findById(id);
+        Dispositivo dispositivo=dispositivoSer.findById(dispid);
+        dipendente.setDispositivo(dispositivo);
+        dipendenteDAO.save(dipendente);
     }
 }
 

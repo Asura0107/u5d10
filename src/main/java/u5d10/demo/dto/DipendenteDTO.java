@@ -9,20 +9,17 @@ public record DipendenteDTO(
         @NotEmpty(message = "l'avatar è obbligatorio")
         String avatar,
         @NotEmpty(message = "lo username è obbligatorio")
-        @Size(min=3,max=20, message ="lo username deve essere compreso tra 3 e 20 caratteri" )
         String username,
-        @NotEmpty(message = "lo username è obbligatorio")
-        @Size(min=3,max=20, message ="lo username deve essere compreso tra 3 e 20 caratteri" )
+        @NotEmpty(message = "il nome è obbligatorio")
+        @Size(min=3,max=20, message ="il nome deve essere compreso tra 3 e 20 caratteri" )
         String name,
-        @NotEmpty(message = "lo username è obbligatorio")
-        @Size(min=3,max=20, message ="lo username deve essere compreso tra 3 e 20 caratteri" )
+        @NotEmpty(message = "il surname è obbligatorio")
+        @Size(min=3,max=20, message ="il surname deve essere compreso tra 3 e 20 caratteri" )
         String surname,
-        @NotEmpty(message = "lo username è obbligatorio")
+        @NotEmpty(message = "l'email è obbligatorio")
         @Email(message = "l'email inserita non è un indirizzo valido")
-        @Size(min=3,max=20, message ="lo username deve essere compreso tra 3 e 20 caratteri" )
         String email,
-        @NotNull
-        long dispositivoId
+        long dispositivo
 
 ) {
 }

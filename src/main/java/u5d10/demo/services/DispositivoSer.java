@@ -33,11 +33,6 @@ public class DispositivoSer {
         Pageable page = PageRequest.of(pageNumber, size, Sort.by(orderBy));
         return dispositivoDAO.findAll(page);
     }
-    public static <T extends Enum<?>> T getRandomEnum(Class<T> enumeration) {
-        Random random = new Random();
-        T[] values = enumeration.getEnumConstants();
-        return values[random.nextInt(values.length)];
-    }
 
     public Dispositivo save(DispositivoDTO newdisp) {
         DisponibileDisp disponibilita = DisponibileDisp.valueOf(newdisp.disponibile());

@@ -27,6 +27,7 @@ public class ExceptionsHandler {
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorsPayload handleNotFound(NotFoundException ex) {
+        ex.printStackTrace();
         return new ErrorsPayload(ex.getMessage(), LocalDateTime.now());
     }
 
